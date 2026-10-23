@@ -1,18 +1,51 @@
-# Telegram Premium Emoji Bot
+# 🎬 دوتایی ببینیم (Watch Together)
 
-A Telegram bot built with Python and Telethon that allows channel owners to publish posts containing animated Telegram Premium custom emojis via shortcode aliases.
+یک پلتفرم وب سبک، سریع و کاملاً مستقل برای تماشای همزمان فیلم و سریال به صورت دو نفره و گروهی با امکاناتی نظیر همگام‌سازی لحظه‌ای (Real-time Sync)، چت زنده، ارسال ویس، استخراج خودکار زیرنویس و پشتیبانی از لینک‌های مستقیم خارجی بدون محدودیت دامنه.
 
-## Features
+---
 
-- **Shortcode Alias System:** Convert text codes (e.g., `:a1:`) into animated Premium emojis automatically.
-- **Full Pack Import:** Admins can import entire emoji sticker packs directly via link (`t.me/addemoji/...`).
-- **Multi-Channel Management:** Connect and manage multiple Telegram channels per user.
-- **Auto-Cleanup Task:** Automatically leaves channels if admin posting permissions are not granted within 24 hours.
-- **Subscription & Referral System:** Built-in user management, payment receipt verification, discount coupons, and referral rewards.
+## ✨ امکانات و قابلیت‌ها (Features)
 
-## Installation
+- **همگام‌سازی لحظه‌ای (Real-time Synchronization):** هماهنگی فریم به فریم پخش، استپ (Pause)، و جلو/عقب بردن ویدیو با استفاده از فناوری Server-Sent Events (SSE).
+- **پشتیبانی از استریم و لینک‌های خارجی (MKV / MP4):** مجهز به پروکسی داخلی برای دور زدن محدودیت‌های CORS و فیلتر Referer سایت‌های دانلود فیلم.
+- **استخراج خودکار زیرنویس با FFmpeg:** استخراج زیرنویس‌های داخلی چسبیده به فایل‌های MKV و تبدیل آن به WebVTT به شکل بلادرنگ.
+- **شخصی‌سازی پیشرفته زیرنویس:** تغییر اندازه، رنگ متن و پس‌زمینه کادر زیرنویس درون پلیر.
+- **ارسال پیام صوتی (Voice Message):** ضبط و ارسال آسان ویس با کیفیت فشرده WebM درون محیط چت.
+- **سیستم مدیریت اتاق و رمز عبور:** انقضای خودکار اتاق‌ها، چت‌ها و فایل‌های بارگذاری شده پس از ۲۴ ساعت برای حفظ منابع هاست.
+- **لینک دعوت هوشمند (Magic Link):** امکان اشتراک‌گذاری لینک ورود مستقیم به اتاق بدون نیاز به وارد کردن دستی رمز عبور توسط مهمان.
+- **واکنش‌های زنده (Live Floating Reactions):** ارسال ایموجی‌های شناور و انیمیشنی به صورت لحظه‌ای روی تصویر پلیر.
 
-1. Clone the repository:
+---
+
+## 🛠️ پیش‌نیازها (Requirements)
+
+- **وب سرور:** Apache یا Nginx
+- **پی‌اچ‌پی:** PHP 7.4 یا PHP 8.x
+- **اکستنشن‌های PHP:**
+  - `php-sqlite3` (جهت ذخیره نشست‌ها و داده‌های همگام‌سازی)
+  - `php-curl` (جهت کارکرد اسکریپت استریم پروکسی)
+- **ابزار سیستمی:** باینری استاتیک **FFmpeg** برای لینوکس (جهت خواندن و استخراج متادیتا و زیرنویس‌ها)
+
+---
+
+## 🚀 راهنمای نصب و راه‌اندازی (Installation Guide)
+
+### ۱. بارگذاری فایل‌ها روی هاست
+فایل‌های سورس‌کد را در ریشه یا پوشه مدنظر روی هاست خود (مثلاً در cPanel یا سرور ابری) قرار دهید:
+- `index.html`
+- `api.php`
+- `proxy.php`
+- `upload.php`
+
+### ۲. قرار دادن باینری FFmpeg (بسیار مهم ⚠️)
+به دلیل حجم بالا، فایل اجرایی `ffmpeg` داخل ریپازیتوری قرار ندارد. برای فعال‌سازی قابلیت استخراج زیرنویس باید باینری استاتیک لینوکس را کنار فایل‌های پروژه قرار دهید:
+
+#### روش اول: دانلود از طریق ترمینال (SSH / Terminal در cPanel)
+وارد پوشه پروژه شوید و دستورات زیر را اجرا کنید:
 ```bash
-git clone [https://github.com/iammahdirezaie/telegram-premium-emoji-bot.git](https://github.com/iammahdirezaie/telegram-premium-emoji-bot.git)
-cd telegram-premium-emoji-bot
+wget [https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz](https://johnvansickle.com/ffmpeg/releases/ffmpeg-release-amd64-static.tar.xz)
+tar -xf ffmpeg-release-amd64-static.tar.xz
+cp ffmpeg-*-amd64-static/ffmpeg ./ffmpeg
+rm -rf ffmpeg-*-amd64-static*
+chmod +x ffmpeg
+chmod 0755 ffmpeg

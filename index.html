@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>دوتایی ببینیم | تماشای همزمان فیلم با کسایی که دوسشون داری</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, interactive-widget=resizes-content">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css">
+  <link id="dynamicFavicon" rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍿</text></svg>">
+  <style>
+    :root {
+      --bg: #070912;
+      --bg-surface: #0e1322;
+      --card-bg: rgba(19, 26, 46, 0.75);
+      --border-color: rgba(56, 189, 248, 0.2);
+      --accent-cyan: #38bdf8;
+      --accent-cyan-hover: #0284c7;
+      --accent-pink: #d946ef;
+      --accent-purple: #8b5cf6;
+      --neon-glow: 0 0 20px rgba(56, 189, 248, 0.35);
+      --pink-glow: 0 0 20px rgba(217, 70, 239, 0.35);
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      
+      --sub-size: 1.25rem;
+      --sub-color: #ffffff;
+      --sub-bg: rgba(7, 9, 18, 0.9);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Vazirmatn', sans-serif; -webkit-tap-highlight-color: transparent; }
+    html, body { width: 100%; min-height: 100%; background-color: var(--bg); color: var(--text); scroll-behavior: smooth; }
+
+    /* هدر صفحه فرود */
+    .landing-header {
+      height: 64px; padding: 0 32px; display: flex; justify-content: space-between; align-items: center;
+      background: rgba(7, 9, 18, 0.85); backdrop-filter: blur(16px); border-bottom: 1px solid var(--border-color);
+      position: sticky; top: 0; z-index: 100;
+    }
+    .landing-brand {
+      font-size: 1.35rem; font-weight: 900;
+      background: linear-gradient(135deg, #fff 0%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; letter-spacing: -0.5px;
+    }
+    .landing-nav { display: flex; align-items: center; gap: 24px; font-size: 0.85rem; }
+    .landing-nav a { color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
+    .landing-nav a:hover { color: var(--accent-cyan); }
+    .lang-badge {
+      background: rgba(255, 255, 255, 0.05); border: 1px solid var(--border-color);
+      padding: 3px 10px; border-radius: 20px; font-size: 0.75rem; color: var(--text-muted);
+    }
+
+    /* بخش اصلی لندینگ */
+    .landing-hero {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 80px 20px 60px; position: relative;
+      background: radial-gradient(circle at 50% 25%, rgba(139, 92, 246, 0.18) 0%, rgba(56, 189, 248, 0.08) 40%, transparent 75%);
+    }
+    .landing-badge {
+      background: rgba(56, 189, 248, 0.1); border: 1px solid rgba(56, 189, 248, 0.35);
+      color: var(--accent-cyan); padding: 6px 18px; border-radius: 30px; font-size: 0.82rem; margin-bottom: 24px;
+      display: inline-flex; align-items: center; gap: 6px; box-shadow: var(--neon-glow);
+    }
+    .landing-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent-cyan); box-shadow: 0 0 8px var(--accent-cyan); }
+    .hero-title {
+      font-size: 2.8rem; font-weight: 900; line-height: 1.35; margin-bottom: 20px;
+      background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 50%, var(--accent-cyan) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; max-width: 700px;
+    }
+    .hero-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 560px; line-height: 1.8; margin-bottom: 35px; }
+    .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; margin-bottom: 35px; }
+    
+    .btn-neon-cyan {
+      background: linear-gradient(135deg, #38bdf8 0%, #0284c7 100%); color: #04101d; border: none;
+      padding: 12px 28px; border-radius: 25px; font-size: 0.95rem; font-weight: 800; cursor: pointer;
+      box-shadow: var(--neon-glow); transition: all 0.2s;
+    }
+    .btn-neon-cyan:hover { transform: translateY(-2px); box-shadow: 0 0 35px rgba(56, 189, 248, 0.6); }
+    .btn-neon-outline {
+      background: rgba(255, 255, 255, 0.04); border: 1px solid var(--border-color); color: #cbd5e1;
+      padding: 12px 26px; border-radius: 25px; font-size: 0.95rem; font-weight: 600; cursor: pointer; transition: all 0.2s;
+    }
+    .btn-neon-outline:hover { background: rgba(255, 255, 255, 0.08); border-color: var(--accent-cyan); color: #fff; }
+    .hero-sub-note { font-size: 0.8rem; color: var(--text-muted); display: flex; align-items: center; gap: 6px; }
+
+    /* مراحل چهارگانه و امکانات */
+    .section-container { max-width: 1100px; margin: 0 auto; padding: 70px 20px; text-align: center; }
+    .section-title { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+    .section-subtitle { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 45px; }
+    
+    .steps-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 18px; }
+    .step-card {
+      background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px;
+      padding: 26px 20px; text-align: center; display: flex; flex-direction: column; align-items: center;
+      transition: all 0.25s ease; position: relative; backdrop-filter: blur(12px);
+    }
+    .step-card:hover { transform: translateY(-4px); border-color: var(--accent-cyan); box-shadow: var(--neon-glow); }
+    .step-num-badge {
+      width: 40px; height: 40px; border-radius: 50%; border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan); display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1rem; margin-bottom: 16px; background: rgba(56, 189, 248, 0.1);
+      box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+    }
+    .step-card h3 { font-size: 1.05rem; margin-bottom: 10px; font-weight: 700; }
+    .step-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.7; }
+
+    /* چیدمان ۴تایی تمیز کارت‌ها به صورت ۲ ستون در ۲ سطر */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .feature-card {
+      background: var(--card-bg); border: 1px solid var(--border-color); border-radius: 16px;
+      padding: 24px; text-align: right; display: flex; align-items: flex-start; gap: 14px;
+      transition: all 0.2s; backdrop-filter: blur(12px);
+    }
+    .feature-card:hover { border-color: var(--accent-purple); box-shadow: var(--pink-glow); }
+    .feature-icon-box {
+      width: 44px; height: 44px; border-radius: 12px; background: rgba(139, 92, 246, 0.12);
+      border: 1px solid rgba(139, 92, 246, 0.3); display: flex; align-items: center; justify-content: center;
+      font-size: 1.25rem; color: #c084fc; flex-shrink: 0;
+    }
+    .feature-card h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
+    .feature-card p { font-size: 0.8rem; color: var(--text-muted); line-height: 1.6; }
+
+    .story-section {
+      background: radial-gradient(circle at 50% 50%, rgba(14, 19, 34, 0.95) 0%, var(--bg) 75%);
+      padding: 70px 20px; text-align: center; border-top: 1px solid var(--border-color);
+    }
+    .story-desc { max-width: 600px; margin: 0 auto; color: var(--text-muted); font-size: 0.92rem; line-height: 1.9; }
+
+    /* محیط اصلی پلیر */
+    .app-root { display: none; flex-direction: column; height: 100dvh; width: 100%; overflow: hidden; }
+
+    .player-header {
+      height: 48px; padding: 0 16px; display: flex; justify-content: space-between; align-items: center;
+      background: var(--bg-surface); border-bottom: 1px solid var(--border-color); flex-shrink: 0; z-index: 50;
+    }
+    .player-brand-wrap { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 0.9rem; color: var(--accent-cyan); }
+    .online-tag {
+      background: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399; padding: 3px 10px; border-radius: 14px; font-size: 0.72rem; font-weight: 600;
+      display: inline-flex; align-items: center; gap: 5px; cursor: pointer; transition: all 0.2s;
+    }
+    .online-tag:hover { background: rgba(16, 185, 129, 0.25); box-shadow: 0 0 10px rgba(16, 185, 129, 0.3); }
+    .online-dot { width: 6px; height: 6px; border-radius: 50%; background: #10b981; box-shadow: 0 0 6px #10b981; }
+
+    .btn-header-chip {
+      font-size: 0.74rem; font-weight: 700; color: #cbd5e1; background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border-color); border-radius: 8px; padding: 4px 10px; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 4px; transition: all 0.2s;
+    }
+    .btn-header-chip:hover { border-color: var(--accent-cyan); color: #fff; box-shadow: var(--neon-glow); }
+    .btn-exit-chip {
+      color: #f87171; border-color: rgba(239, 68, 68, 0.35); background: rgba(239, 68, 68, 0.08);
+    }
+    .btn-exit-chip:hover { border-color: #ef4444; color: #fff; background: rgba(239, 68, 68, 0.3); box-shadow: 0 0 12px rgba(239, 68, 68, 0.4); }
+
+    .app-main { flex: 1; display: grid; grid-template-columns: 1fr 340px; height: calc(100% - 48px); overflow: hidden; }
+
+    .video-viewport {
+      display: flex; flex-direction: column; padding: 12px; gap: 10px;
+      overflow-y: auto; align-items: center; justify-content: flex-start;
+    }
+
+    .cinema-frame {
+      position: relative; width: 100%; max-width: 980px; aspect-ratio: 16/9; background: #000;
+      border-radius: 14px; overflow: hidden; box-shadow: 0 15px 40px rgba(0,0,0,0.9);
+      border: 1px solid var(--border-color); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+    }
+    video { width: 100%; height: 100%; display: block; object-fit: contain; }
+
+    /* لایه پرواز ایموجی‌های ری‌اکشن */
+    .reactions-layer { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 110; }
+    .floating-emoji {
+      position: absolute; bottom: 35px; font-size: 2.4rem;
+      animation: floatUp 2.4s cubic-bezier(0.2, 0.8, 0.3, 1) forwards;
+    }
+    @keyframes floatUp {
+      0% { opacity: 1; transform: translateY(0) scale(0.6); }
+      100% { opacity: 0; transform: translateY(-380px) scale(1.4) rotate(15deg); }
+    }
+
+    /* لایه اختصاصی زیرنویس */
+    .custom-subtitle-overlay {
+      position: absolute; bottom: 75px; left: 5%; right: 5%; text-align: center;
+      pointer-events: none; z-index: 105; display: flex; justify-content: center;
+    }
+    .custom-subtitle-text {
+      display: inline-block; background: var(--sub-bg); color: var(--sub-color);
+      font-size: var(--sub-size); font-weight: 500; line-height: 1.5; padding: 5px 16px;
+      border-radius: 8px; text-shadow: 0 2px 4px rgba(0,0,0,0.95);
+      border: 1px solid rgba(255, 255, 255, 0.1); max-width: 90%; word-wrap: break-word;
+      transition: all 0.15s ease;
+    }
+
+    .checkpoint-badge {
+      position: absolute; top: 12px; left: 12px; background: rgba(14, 19, 34, 0.9);
+      border: 1px solid var(--border-color); color: #cbd5e1; padding: 4px 10px;
+      border-radius: 14px; font-size: 0.72rem; cursor: pointer; display: flex; align-items: center; gap: 4px; z-index: 120;
+    }
+
+    /* کنترل‌بار زیر فیلم */
+    .custom-controls {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      background: linear-gradient(to top, rgba(7, 9, 18, 0.98), transparent);
+      padding: 8px 14px; display: flex; flex-direction: column; gap: 4px;
+      opacity: 0; transition: opacity 0.25s; z-index: 100;
+    }
+    .cinema-frame:hover .custom-controls, .custom-controls.active-touch { opacity: 1; }
+    .control-row { display: flex; align-items: center; justify-content: space-between; }
+    
+    .ctrl-group { display: flex; align-items: center; gap: 6px; }
+    .control-btn {
+      background: none; border: none; color: #fff; font-size: 1.05rem; cursor: pointer; padding: 3px 6px; border-radius: 6px;
+      transition: all 0.15s;
+    }
+    .control-btn:hover { color: var(--accent-cyan); background: rgba(255, 255, 255, 0.08); }
+    
+    .speed-select {
+      background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: #fff;
+      font-size: 0.72rem; font-weight: bold; padding: 2px 6px; border-radius: 6px; cursor: pointer; outline: none;
+    }
+    .speed-select option { background: #0f1526; color: #fff; }
+
+    .time-slider { width: 100%; height: 4px; -webkit-appearance: none; background: rgba(255,255,255,0.2); border-radius: 2px; }
+    .time-slider::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--accent-cyan); cursor: pointer; box-shadow: 0 0 6px var(--accent-cyan); }
+
+    .player-hud-notice {
+      position: absolute; top: 14px; left: 50%; transform: translateX(-50%) translateY(-15px);
+      background: rgba(14, 19, 34, 0.96); border: 1px solid var(--accent-cyan); color: #fff;
+      padding: 5px 16px; border-radius: 20px; font-size: 0.75rem; font-weight: 600; opacity: 0;
+      pointer-events: none; transition: all 0.2s ease; z-index: 120; box-shadow: var(--neon-glow);
+    }
+    .player-hud-notice.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+    .action-toolbar {
+      display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; flex-wrap: wrap;
+    }
+    .reaction-bar {
+      display: flex; gap: 8px; background: var(--bg-surface); border: 1px solid var(--border-color);
+      padding: 4px 14px; border-radius: 25px; box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    }
+    .reaction-btn { background: none; border: none; font-size: 1.25rem; cursor: pointer; transition: transform 0.15s; }
+    .reaction-btn:active { transform: scale(1.3); }
+
+    /* پنل چت */
+    .chat-panel {
+      background: var(--bg-surface); border-left: 1px solid var(--border-color);
+      display: flex; flex-direction: column; height: 100%; min-height: 0; overflow: hidden; position: relative;
+    }
+    .chat-head {
+      padding: 10px 14px; border-bottom: 1px solid var(--border-color); font-weight: 700; font-size: 0.82rem;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .chat-stream {
+      flex: 1; padding: 12px; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; position: relative;
+    }
+    .chat-msg {
+      max-width: 85%; padding: 7px 12px; border-radius: 10px; font-size: 0.8rem;
+      background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.06);
+      align-self: flex-start; word-break: break-word;
+    }
+    .chat-msg.mine {
+      align-self: flex-end; background: rgba(56, 189, 248, 0.15); border-color: rgba(56, 189, 248, 0.35);
+    }
+    .chat-sender { font-size: 0.65rem; color: var(--accent-cyan); font-weight: bold; margin-bottom: 2px; }
+
+    /* پت همراه داخل چت */
+    .chat-pet-companion {
+      position: absolute; bottom: 58px; right: 12px; z-index: 40; cursor: pointer;
+      display: flex; align-items: center; gap: 6px; user-select: none;
+      filter: drop-shadow(0 4px 10px rgba(0,0,0,0.6)); transition: transform 0.2s;
+    }
+    .chat-pet-companion:active { transform: scale(1.2) rotate(8deg); }
+    .pet-avatar { font-size: 1.8rem; animation: petWiggle 2.5s infinite ease-in-out; }
+    @keyframes petWiggle { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+    .pet-bubble-hint {
+      background: var(--card-bg); border: 1px solid var(--border-color); padding: 3px 9px;
+      border-radius: 10px; font-size: 0.65rem; color: var(--accent-cyan); pointer-events: none;
+    }
+
+    .chat-bottom {
+      padding: 8px 10px; border-top: 1px solid var(--border-color); display: flex; align-items: center;
+      gap: 6px; background: rgba(14, 19, 34, 0.98); flex-shrink: 0;
+    }
+    .chat-bottom input {
+      flex: 1; background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-color);
+      border-radius: 8px; padding: 8px 12px; color: #fff; font-size: 0.82rem; outline: none;
+    }
+    .chat-bottom input:focus { border-color: var(--accent-cyan); box-shadow: var(--neon-glow); }
+    .btn-mic {
+      background: rgba(255, 255, 255, 0.08); border: 1px solid var(--border-color); color: #fff;
+      border-radius: 8px; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; cursor: pointer;
+    }
+    .btn-mic.recording { background: #ef4444; border-color: #f87171; box-shadow: 0 0 10px #ef4444; }
+
+    /* مودال‌های نئونی */
+    .room-custom-modal {
+      position: fixed; inset: 0; background: rgba(4, 6, 12, 0.85); backdrop-filter: blur(16px);
+      display: none; align-items: center; justify-content: center; z-index: 3000; padding: 16px;
+    }
+    .room-modal-card {
+      background: #0f1526; border: 1px solid var(--border-color); border-radius: 18px;
+      padding: 24px; width: 100%; max-width: 440px; box-shadow: 0 20px 50px rgba(0,0,0,0.85);
+      display: flex; flex-direction: column; gap: 14px; position: relative;
+    }
+    .room-input {
+      background: rgba(255, 255, 255, 0.06); border: 1px solid var(--border-color);
+      border-radius: 10px; padding: 10px 14px; color: #fff; font-size: 0.88rem; outline: none; width: 100%;
+    }
+    .room-input:focus { border-color: var(--accent-cyan); box-shadow: var(--neon-glow); }
+    .room-status-hint { font-size: 0.75rem; color: #f87171; min-height: 16px; }
+
+    .sub-setting-row { display: flex; justify-content: space-between; align-items: center; font-size: 0.8rem; }
+    .color-swatches { display: flex; gap: 8px; }
+    .color-swatch {
+      width: 22px; height: 22px; border-radius: 50%; cursor: pointer; border: 2px solid transparent;
+    }
+    .color-swatch.active { border-color: #fff; transform: scale(1.15); box-shadow: 0 0 8px #fff; }
+
+    .online-user-item {
+      display: flex; align-items: center; gap: 8px; padding: 6px 10px;
+      background: rgba(255,255,255,0.04); border-radius: 8px; font-size: 0.8rem; border: 1px solid var(--border-color);
+    }
+
+    @media (max-width: 850px) {
+      .landing-header { padding: 0 16px; }
+      .hero-title { font-size: 1.9rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .app-main { display: flex; flex-direction: column; height: calc(100% - 48px); }
+      .chat-panel { flex: 1; border-left: none; border-top: 1px solid var(--border-color); min-height: 220px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ۱. صفحه فرود -->
+  <div id="landingScreen">
+    <header class="landing-header">
+      <div class="landing-brand">دوتایی ببینیم</div>
+      <nav class="landing-nav">
+        <a href="#howItWorks">چطور کار میکنه</a>
+        <a href="#features">امکانات</a>
+        <span class="lang-badge">FA</span>
+      </nav>
+    </header>
+
+    <main>
+      <section class="landing-hero">
+        <div class="landing-badge">
+          <span class="dot"></span>
+          <span>اتاق سینمایی دوتایی</span>
+        </div>
+        <h1 class="hero-title">فیلم دیدن همزمان<br>با کسایی که دوسشون داری</h1>
+        <p class="hero-desc">یه روم بساز، لینکو بده به دوستت یا پارتنرت — از همه جا، همزمان یه فریم ببینید، با هم چت کنید و ویس بفرستید.</p>
+        
+        <div class="hero-actions">
+          <button class="btn-neon-cyan" onclick="openRoomModal('create')">🚀 ساخت روم جدید</button>
+          <button class="btn-neon-outline" onclick="openRoomModal('join')">ورود به روم خاص</button>
+        </div>
+
+        <div class="hero-sub-note">
+          <span>🎬</span>
+          <span>بر خلاف بقیه، اینجا زیرنویس و زبان فیلم خودکار پیدا و هماهنگ میشه!</span>
+        </div>
+      </section>
+
+      <!-- چطور کار میکنه -->
+      <section class="section-container" id="howItWorks">
+        <h2 class="section-title">چطور کار میکنه؟</h2>
+        <div class="section-subtitle">چهار قدم تا شروع تماشا با هم</div>
+
+        <div class="steps-grid">
+          <div class="step-card">
+            <div class="step-num-badge">۱</div>
+            <h3>روم بساز</h3>
+            <p>یه روم اختصاصی بساز و اختیار کامل داشته باش — پاز، پیش‌بر، برگشت به عقب</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">۲</div>
+            <h3>لینک رو بفرست</h3>
+            <p>لینک روم رو کپی کن و برای دوستت بفرست. دوستت باید لینک رو تو مرورگر باز کنه</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">۳</div>
+            <h3>لینک فیلم رو بذار</h3>
+            <p>لینک مستقیم فیلم رو از هر سایتی که داری کپی و پخش کن</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-badge">۴</div>
+            <h3>با هم ببینید</h3>
+            <p>همزمان فیلم ببینید، چت کنید، صحبت صوتی کنید و ری‌اکشن بفرستید — دقیقاً مثل کنار هم بودن</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- امکانات ۴تایی به صورت ۲ در ۲ -->
+      <section class="section-container" id="features">
+        <h2 class="section-title">امکانات</h2>
+        <div class="section-subtitle">ساده، سریع، سینک</div>
+
+        <div class="features-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">⚡</div>
+            <div>
+              <h4>سینک کامل</h4>
+              <p>پاز، پیش‌بر، عقب — همه‌چیز برای همه اعضای روم همزمان اعمال میشه</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-box">💬</div>
+            <div>
+              <h4>ری‌اکشن زنده</h4>
+              <p>موقع دیدن فیلم ری‌اکشن بفرست — لحظه‌ای روی صفحه طرف مقابل ظاهر میشه</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-box">🛡️</div>
+            <div>
+              <h4>کنترل هوشمند</h4>
+              <p>سازنده روم کنترل کامل داره، بقیه اعضا محدودیت قابل تنظیم دارن</p>
+            </div>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-box">🌐</div>
+            <div>
+              <h4>روی اینترانت</h4>
+              <p>حتی اگر اینترنت قطع باشه — تو شبکه داخلی ایران کار میکنه</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- داستان -->
+      <section class="story-section">
+        <h2 class="section-title" style="margin-bottom: 16px;">داستان دوتایی ببینیم</h2>
+        <p class="story-desc">بارها می‌خواستیم از راه دور با آدم‌ها همزمان فیلم ببینیم، اما نمی‌شد. برای همین تصمیم گرفتیم خودمون بسازیمش.</p>
+      </section>
+    </main>
+  </div>
+
+  <!-- ۲. مودال ساخت یا ورود به اتاق -->
+  <div class="room-custom-modal" id="roomCustomModal">
+    <div class="room-modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h3 id="roomModalTitle" style="font-size:1.05rem; font-weight:800;">ساخت اتاق جدید</h3>
+        <button style="background:none; border:none; color:var(--text-muted); font-size:1.2rem; cursor:pointer;" onclick="closeRoomModal()">✕</button>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-muted);">نام شما و مشخصات اتاق را بنویسید:</p>
+
+      <input type="text" class="room-input" id="customNicknameInput" placeholder="نام شما (برای چت)" autocomplete="off">
+      <input type="text" class="room-input" id="customRoomInput" placeholder="شناسه اتاق (مثال: movie-night)" dir="ltr" autocomplete="off">
+      <input type="text" class="room-input" id="customRoomPass" placeholder="رمز اتاق (اختیاری)" dir="ltr" autocomplete="off">
+      
+      <div class="room-status-hint" id="roomStatusHint"></div>
+
+      <div style="display:flex; gap:10px;">
+        <button class="btn-neon-cyan" id="confirmRoomBtn" style="flex:1;" onclick="confirmRoomAction()">تایید و ورود</button>
+        <button class="btn-neon-outline" onclick="closeRoomModal()">انصراف</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ۳. مودال مهمان جهت ورود به اتاق -->
+  <div class="room-custom-modal" id="guestJoinModal">
+    <div class="room-modal-card">
+      <h3 style="font-size:1.05rem; font-weight:800;">ورود به اتاق تماشا</h3>
+      <p style="font-size:0.75rem; color:var(--text-muted);">برای پیوستن به جمع نام خود را وارد کنید:</p>
+
+      <input type="text" class="room-input" id="guestNicknameInput" placeholder="نام شما (مثال: سارا)" autocomplete="off">
+      <input type="password" class="room-input" id="guestPasswordInput" placeholder="رمز عبور اتاق" style="display:none;" autocomplete="off">
+      
+      <div class="room-status-hint" id="guestStatusHint"></div>
+
+      <button class="btn-neon-cyan" style="width:100%;" onclick="submitGuestJoin()">ورود به پخش</button>
+    </div>
+  </div>
+
+  <!-- ۴. مودال کاربران آنلاین -->
+  <div class="room-custom-modal" id="onlineUsersModal">
+    <div class="room-modal-card" style="max-width: 360px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="font-size:0.95rem; font-weight:700;">افراد حاضر در اتاق</h4>
+        <button style="background:none; border:none; color:var(--text-muted); cursor:pointer;" onclick="closeOnlineModal()">✕</button>
+      </div>
+      <div id="onlineUsersListContainer" style="display:flex; flex-direction:column; gap:6px; max-height:220px; overflow-y:auto; margin-top:4px;">
+        <div style="font-size:0.75rem; color:var(--text-muted);">در حال دریافت اسامی...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ۵. مودال شخصی‌سازی زیرنویس -->
+  <div class="room-custom-modal" id="subSettingsModal">
+    <div class="room-modal-card" style="max-width: 380px;">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="font-size:0.95rem; font-weight:700;">شخصی‌سازی زیرنویس</h4>
+        <button style="background:none; border:none; color:var(--text-muted); cursor:pointer;" onclick="closeSubSettings()">✕</button>
+      </div>
+
+      <div class="sub-setting-row">
+        <span>اندازه متن:</span>
+        <select class="speed-select" id="subSizeSelect" onchange="updateSubStyles()">
+          <option value="1rem">کوچک</option>
+          <option value="1.25rem" selected>استاندارد</option>
+          <option value="1.5rem">بزرگ</option>
+          <option value="1.8rem">خیلی بزرگ</option>
+        </select>
+      </div>
+
+      <div class="sub-setting-row">
+        <span>رنگ زیرنویس:</span>
+        <div class="color-swatches">
+          <div class="color-swatch active" style="background:#ffffff;" onclick="setSubColor('#ffffff', this)"></div>
+          <div class="color-swatch" style="background:#fde047;" onclick="setSubColor('#fde047', this)"></div>
+          <div class="color-swatch" style="background:#38bdf8;" onclick="setSubColor('#38bdf8', this)"></div>
+          <div class="color-swatch" style="background:#4ade80;" onclick="setSubColor('#4ade80', this)"></div>
+        </div>
+      </div>
+
+      <div class="sub-setting-row">
+        <span>پس‌زمینه متن:</span>
+        <select class="speed-select" id="subBgSelect" onchange="updateSubStyles()">
+          <option value="rgba(0,0,0,0.85)" selected>مشکی مات</option>
+          <option value="rgba(0,0,0,0.5)">مشکی نیمه‌شفاف</option>
+          <option value="transparent">بدون پس‌زمینه (با سایه)</option>
+        </select>
+      </div>
+
+      <div style="border: 1px dashed var(--border-color); padding: 12px; border-radius: 8px; text-align: center; margin-top: 6px;">
+        <span style="font-size:0.7rem; color:var(--text-muted); display:block; margin-bottom:4px;">پیش‌نمایش:</span>
+        <span id="subPreviewTxt" style="font-size: 1.25rem; color:#fff; background:rgba(0,0,0,0.85); padding:2px 8px; border-radius:4px;">متن تستی زیرنویس فارسی</span>
+      </div>
+
+      <button class="btn-neon-cyan" style="width:100%;" onclick="closeSubSettings()">ذخیره تنظیمات</button>
+    </div>
+  </div>
+
+  <!-- ۶. محیط اصلی پلیر و چت -->
+  <div class="app-root" id="appRoot">
+    <header class="player-header">
+      <div class="player-brand-wrap">
+        <span>🎬 دوتایی ببینیم</span>
+        <span class="btn-header-chip" onclick="copyInviteLink()" id="roomPillBadge">اتاق: ... 📋</span>
+        <span class="online-tag" onclick="openOnlineModal()"><span class="online-dot"></span> <span id="onlineCountTxt">۱ نفر آنلاین</span></span>
+      </div>
+      <div style="display:flex; align-items:center; gap:8px;">
+        <button class="btn-header-chip" onclick="openLinkStreamModal()">🔗 لینک مستقیم</button>
+        <button class="btn-header-chip" onclick="openFileDrawer()">📂 فایل‌ها</button>
+        <span class="btn-header-chip" onclick="changeNickname()"><span id="userNameLabel">کاربر</span> ✏️</span>
+        <button class="btn-header-chip btn-exit-chip" onclick="exitRoomConfirm()" title="خروج از اتاق">🚪 خروج</button>
+      </div>
+    </header>
+
+    <div class="app-main">
+      <div class="video-viewport">
+        <div class="cinema-frame" id="cinemaContainer">
+          <div class="checkpoint-badge" onclick="restoreLastCheckpoint()">
+            <span>↩️</span> <span id="checkpointTimeTxt">آخرین استپ</span>
+          </div>
+
+          <div class="player-hud-notice" id="hudNotice">
+            <span id="hudIcon">⏸️</span>
+            <span id="hudText">متوقف شد</span>
+          </div>
+
+          <div class="reactions-layer" id="reactionLayer"></div>
+
+          <!-- لایه رندر زیرنویس -->
+          <div class="custom-subtitle-overlay" id="subOverlay" style="display: none;">
+            <span class="custom-subtitle-text" id="subText"></span>
+          </div>
+
+          <video id="player" playsinline preload="auto"></video>
+
+          <!-- کنترل‌بار زیر فیلم -->
+          <div class="custom-controls" id="customControls">
+            <input type="range" class="time-slider" id="timeSlider" min="0" max="100" value="0">
+            <div class="control-row">
+              <div class="ctrl-group">
+                <button class="control-btn" id="playBtn" onclick="togglePlay()">▶️</button>
+                <button class="btn-header-chip" onclick="seekRelative(-5)">-5s</button>
+                <button class="btn-header-chip" onclick="seekRelative(+5)">+5s</button>
+                <span style="font-size:0.72rem; color:#cbd5e1; font-variant-numeric: tabular-nums;" id="timeDisplay">00:00 / 00:00</span>
+              </div>
+              <div class="ctrl-group">
+                <select class="speed-select" id="playbackSpeedSelect" onchange="changeVideoSpeed(this.value)">
+                  <option value="0.75">0.75x</option>
+                  <option value="1" selected>1.0x</option>
+                  <option value="1.25">1.25x</option>
+                  <option value="1.5">1.5x</option>
+                  <option value="2">2.0x</option>
+                </select>
+                <button class="control-btn" onclick="openSubSettings()" title="تنظیمات زیرنویس">🔤</button>
+                <button class="control-btn" onclick="toggleMute()" id="muteBtn">🔊</button>
+                <button class="control-btn" onclick="toggleCinemaFullscreen()">⛶</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="action-toolbar">
+          <div class="reaction-bar">
+            <button class="reaction-btn" onclick="sendReaction('❤️')">❤️</button>
+            <button class="reaction-btn" onclick="sendReaction('😂')">😂</button>
+            <button class="reaction-btn" onclick="sendReaction('😭')">😭</button>
+            <button class="reaction-btn" onclick="sendReaction('🔥')">🔥</button>
+            <button class="reaction-btn" onclick="sendReaction('🍿')">🍿</button>
+          </div>
+          <button class="btn-header-chip" onclick="restoreLastCheckpoint()">↩️ بازگشت به استپ قبلی</button>
+        </div>
+      </div>
+
+      <!-- پنل چت همراه با پت بازیگوش -->
+      <div class="chat-panel">
+        <div class="chat-head">
+          <span>گفتگوی متنی</span>
+          <button class="btn-header-chip" onclick="clearChatHistory()">🗑️ پاک‌سازی چت</button>
+        </div>
+        
+        <div class="chat-stream" id="chatList"></div>
+
+        <!-- پت همراه داخل چت -->
+        <div class="chat-pet-companion" onclick="playWithPet()">
+          <span class="pet-bubble-hint" id="petSpeech">با من بازی کن!</span>
+          <span class="pet-avatar" id="petAvatar">🐼</span>
+        </div>
+
+        <form class="chat-bottom" id="chatForm">
+          <input type="text" id="chatInput" placeholder="نوشتن پیام..." autocomplete="off">
+          <button type="button" class="btn-mic" id="micBtn" onclick="toggleRecordVoice()" title="ارسال ویس">🎙️</button>
+          <button type="submit" class="btn-neon-cyan" style="padding: 6px 14px; font-size: 0.8rem;">ارسال</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- مودال وارد کردن لینک مستقیم -->
+  <div class="room-custom-modal" id="linkStreamModal" onclick="closeLinkModalOutside(event)">
+    <div class="room-modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="font-size:0.95rem; color:var(--accent-cyan);">پخش فیلم با لینک مستقیم از دیگر سایت‌ها</h4>
+        <button style="background:none; border:none; color:var(--text-muted); cursor:pointer;" onclick="closeLinkStreamModal()">✕</button>
+      </div>
+      <p style="font-size:0.75rem; color:var(--text-muted); line-height:1.6;">لینک مستقیم فایل MKV یا MP4 را وارد کنید؛ استریم بدون بلاک از پروکسی داخلی لود شده و زیرنویس آن شناسایی می‌شود.</p>
+      
+      <input type="url" class="room-input" id="streamUrlInput" placeholder="https://site.com/movie.mkv" dir="ltr">
+      <button class="btn-neon-cyan" onclick="submitExternalStream()" style="width:100%;">پخش و شناسایی زیرنویس</button>
+    </div>
+  </div>
+
+  <!-- مودال فایل‌ها -->
+  <div class="room-custom-modal" id="fileDrawer" onclick="closeDrawerOutside(event)">
+    <div class="room-modal-card">
+      <div style="display:flex; justify-content:space-between; align-items:center;">
+        <h4 style="font-size:0.95rem;">مدیریت فایل‌های اختصاصی اتاق</h4>
+        <button style="background:none; border:none; color:var(--text-muted); cursor:pointer;" onclick="closeDrawer()">✕</button>
+      </div>
+
+      <div class="expiry-banner" style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); color: #fbbf24; padding: 8px 12px; border-radius: 10px; font-size: 0.72rem; line-height: 1.5; display: flex; align-items: center; gap: 6px;">
+        <span>⏳</span>
+        <span>تمام فایل‌ها و چت‌های این اتاق پس از ۲۴ ساعت به طور خودکار پاک می‌شوند.</span>
+      </div>
+
+      <div id="fileArchiveList" style="display:flex; flex-direction:column; gap:6px; max-height:140px; overflow-y:auto;">
+        <div style="font-size:0.72rem; color:var(--text-muted);">در حال دریافت...</div>
+      </div>
+
+      <div style="border-top:1px solid var(--border-color); padding-top:10px; display:flex; flex-direction:column; gap:8px;">
+        <label style="font-size:0.75rem; font-weight:bold;">آپلود فوق سریع (توربو چندرشته‌ای):</label>
+        <input type="file" id="filePicker" accept="video/mp4,video/mkv">
+        <button class="btn-neon-cyan" id="uploadBtn">🚀 شروع آپلود توربو</button>
+        <div id="uploadStatus" style="font-size:0.7rem; color:var(--accent-cyan);">آماده</div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const urlParams = new URLSearchParams(window.location.search);
+    let currentRoom = urlParams.get('room');
+    let modalMode = 'create';
+    let myName = localStorage.getItem('party_user') || '';
+    let currentOnlineUsers = [];
+
+    // جریان بررسی دسترسی و نام کاربر
+    async function initRoomCheck() {
+      if (!currentRoom) {
+        document.getElementById('landingScreen').style.display = 'block';
+        document.getElementById('appRoot').style.display = 'none';
+        return;
+      }
+
+      try {
+        const res = await fetch(`api.php?action=check_room_status&room=${currentRoom}`);
+        const json = await res.json();
+        
+        if (!json.exists) {
+          alert('این اتاق وجود ندارد یا مدت ۲۴ ساعت آن تمام شده است!');
+          window.location.search = '';
+          return;
+        }
+
+        const isOwner = sessionStorage.getItem(`created_room_${currentRoom}`) === 'yes';
+        const urlKey = urlParams.get('key');
+
+        if (!myName || (!isOwner && json.has_password && !urlKey)) {
+          openGuestJoinModal(json.has_password && !isOwner && !urlKey);
+        } else {
+          finishAuthAndEnter();
+        }
+      } catch(e) {
+        window.location.search = '';
+      }
+    }
+
+    function openGuestJoinModal(needPass) {
+      document.getElementById('guestNicknameInput').value = myName;
+      const passInp = document.getElementById('guestPasswordInput');
+      passInp.style.display = needPass ? 'block' : 'none';
+      passInp.value = '';
+      document.getElementById('guestStatusHint').textContent = '';
+      document.getElementById('guestJoinModal').style.display = 'flex';
+    }
+
+    async function submitGuestJoin() {
+      const nameVal = document.getElementById('guestNicknameInput').value.trim();
+      const passInp = document.getElementById('guestPasswordInput');
+      const passVal = passInp.value.trim();
+      const hint = document.getElementById('guestStatusHint');
+
+      if (!nameVal) {
+        hint.textContent = 'لطفاً نام خود را بنویسید.';
+        return;
+      }
+
+      myName = nameVal;
+      localStorage.setItem('party_user', myName);
+
+      if (passInp.style.display !== 'none') {
+        const authRes = await fetch('api.php?action=auth_room', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ room: currentRoom, password: passVal })
+        });
+        const authJson = await authRes.json();
+        if (!authJson.success) {
+          hint.textContent = authJson.message || 'رمز عبور اشتباه است!';
+          return;
+        }
+      }
+
+      document.getElementById('guestJoinModal').style.display = 'none';
+      finishAuthAndEnter();
+    }
+
+    function finishAuthAndEnter() {
+      document.getElementById('landingScreen').style.display = 'none';
+      document.getElementById('appRoot').style.display = 'flex';
+      document.getElementById('userNameLabel').textContent = myName;
+      document.getElementById('roomPillBadge').textContent = `اتاق: ${currentRoom} 📋`;
+      startSSE();
+      sendHeartbeat();
+      setInterval(sendHeartbeat, 3000);
+    }
+    initRoomCheck();
+
+    function exitRoomConfirm() {
+      if (confirm('آیا می‌خواهید از اتاق خارج شوید و به صفحه اصلی بروید؟')) {
+        window.location.search = '';
+      }
+    }
+
+    function openRoomModal(mode) {
+      modalMode = mode;
+      document.getElementById('roomStatusHint').textContent = '';
+      document.getElementById('customRoomInput').value = '';
+      document.getElementById('customNicknameInput').value = myName;
+      
+      if (mode === 'create') {
+        document.getElementById('roomModalTitle').textContent = 'ساخت اتاق جدید (انقضا: ۲۴ ساعت)';
+        document.getElementById('customRoomPass').style.display = 'block';
+        document.getElementById('customRoomPass').value = Math.floor(1000 + Math.random() * 9000);
+      } else {
+        document.getElementById('roomModalTitle').textContent = 'ورود به اتاق خاص';
+        document.getElementById('customRoomPass').style.display = 'block';
+        document.getElementById('customRoomPass').value = '';
+      }
+      document.getElementById('roomCustomModal').style.display = 'flex';
+    }
+    function closeRoomModal() { document.getElementById('roomCustomModal').style.display = 'none'; }
+
+    async function confirmRoomAction() {
+      const nickVal = document.getElementById('customNicknameInput').value.trim();
+      const val = document.getElementById('customRoomInput').value.trim().replace(/[^a-zA-Z0-9_-]/g, '');
+      const pass = document.getElementById('customRoomPass').value.trim();
+      const hint = document.getElementById('roomStatusHint');
+
+      if (!nickVal) return hint.textContent = 'نام خود را بنویسید.';
+      if (!val) return hint.textContent = 'شناسه اتاق را به انگلیسی وارد کنید.';
+
+      myName = nickVal;
+      localStorage.setItem('party_user', myName);
+
+      if (modalMode === 'create') {
+        hint.style.color = '#38bdf8'; hint.textContent = 'در حال ساخت اتاق...';
+        const res = await fetch('api.php?action=create_room', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ room: val, password: pass })
+        });
+        const json = await res.json();
+        if (!json.success) { hint.style.color = '#f87171'; return hint.textContent = json.message; }
+        sessionStorage.setItem(`created_room_${val}`, 'yes');
+        window.location.search = `?room=${val}`;
+      } else {
+        hint.style.color = '#38bdf8'; hint.textContent = 'در حال اعتبارسنجی...';
+        const res = await fetch('api.php?action=auth_room', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ room: val, password: pass })
+        });
+        const json = await res.json();
+        if (!json.success) { hint.style.color = '#f87171'; return hint.textContent = json.message; }
+        window.location.search = `?room=${val}`;
+      }
+    }
+
+    async function copyInviteLink() {
+      try {
+        const res = await fetch(`api.php?action=get_share_key&room=${currentRoom}`);
+        const json = await res.json();
+        const url = new URL(window.location.origin + window.location.pathname);
+        url.searchParams.set('room', currentRoom);
+        if (json.key) url.searchParams.set('key', encodeURIComponent(json.key));
+        navigator.clipboard.writeText(url.toString());
+        triggerHud('📋', 'لینک دعوت کپی شد!');
+      } catch(e) {
+        navigator.clipboard.writeText(window.location.href);
+      }
+    }
+
+    function openOnlineModal() {
+      const container = document.getElementById('onlineUsersListContainer');
+      container.innerHTML = '';
+      if (currentOnlineUsers.length === 0) {
+        container.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted);">کاربری یافت نشد.</div>';
+      } else {
+        currentOnlineUsers.forEach(u => {
+          const div = document.createElement('div');
+          div.className = 'online-user-item';
+          div.innerHTML = `<span style="width:8px; height:8px; border-radius:50%; background:#10b981;"></span><span>${u}</span> ${u === myName ? '<span style="color:var(--accent-cyan); font-size:0.7rem;">(شما)</span>' : ''}`;
+          container.appendChild(div);
+        });
+      }
+      document.getElementById('onlineUsersModal').style.display = 'flex';
+    }
+    function closeOnlineModal() { document.getElementById('onlineUsersModal').style.display = 'none'; }
+
+    const player = document.getElementById('player');
+    const playBtn = document.getElementById('playBtn');
+    const timeSlider = document.getElementById('timeSlider');
+    const timeDisplay = document.getElementById('timeDisplay');
+    const customControls = document.getElementById('customControls');
+    let isInternalUpdate = false;
+
+    function formatTime(sec) {
+      if (isNaN(sec) || sec < 0) return "00:00";
+      const h = Math.floor(sec / 3600);
+      const m = Math.floor((sec % 3600) / 60);
+      const s = Math.floor(sec % 60);
+      const mStr = (m < 10 ? '0' : '') + m;
+      const sStr = (s < 10 ? '0' : '') + s;
+      return h > 0 ? `${h}:${mStr}:${sStr}` : `${mStr}:${sStr}`;
+    }
+
+    player.addEventListener('timeupdate', () => {
+      if (!timeSlider.matches(':active')) {
+        timeSlider.value = (player.currentTime / (player.duration || 1)) * 100;
+      }
+      timeDisplay.textContent = `${formatTime(player.currentTime)} / ${formatTime(player.duration || 0)}`;
+    });
+
+    timeSlider.addEventListener('change', () => {
+      if (player.duration) {
+        const target = (timeSlider.value / 100) * player.duration;
+        player.currentTime = target;
+        broadcastState('paused', target);
+      }
+    });
+
+    function seekRelative(seconds) {
+      if (player.duration) {
+        player.currentTime = Math.max(0, Math.min(player.duration, player.currentTime + seconds));
+        broadcastState(player.paused ? 'paused' : 'playing', player.currentTime);
+        triggerHud(seconds > 0 ? '⏩' : '⏪', `${Math.abs(seconds)} ثانیه`);
+      }
+    }
+
+    function changeVideoSpeed(speed) {
+      player.playbackRate = parseFloat(speed);
+      triggerHud('⚡', `سرعت: ${speed}x`);
+    }
+
+    function togglePlay() {
+      if (player.paused) player.play();
+      else player.pause();
+    }
+    player.addEventListener('play', () => {
+      playBtn.textContent = '⏸️';
+      broadcastState('playing', player.currentTime);
+    });
+    player.addEventListener('pause', () => {
+      playBtn.textContent = '▶️';
+      broadcastState('paused', player.currentTime);
+    });
+
+    function toggleMute() {
+      player.muted = !player.muted;
+      document.getElementById('muteBtn').textContent = player.muted ? '🔇' : '🔊';
+    }
+
+    function toggleCinemaFullscreen() {
+      const el = document.getElementById('cinemaContainer');
+      if (!document.fullscreenElement) el.requestFullscreen();
+      else document.exitFullscreen();
+    }
+
+    function openSubSettings() { document.getElementById('subSettingsModal').style.display = 'flex'; }
+    function closeSubSettings() { document.getElementById('subSettingsModal').style.display = 'none'; }
+    
+    function setSubColor(color, el) {
+      document.querySelectorAll('.color-swatch').forEach(s => s.classList.remove('active'));
+      el.classList.add('active');
+      document.documentElement.style.setProperty('--sub-color', color);
+      document.getElementById('subPreviewTxt').style.color = color;
+    }
+
+    function updateSubStyles() {
+      const size = document.getElementById('subSizeSelect').value;
+      const bg = document.getElementById('subBgSelect').value;
+      document.documentElement.style.setProperty('--sub-size', size);
+      document.documentElement.style.setProperty('--sub-bg', bg);
+      
+      const prev = document.getElementById('subPreviewTxt');
+      prev.style.fontSize = size;
+      prev.style.background = bg;
+    }
+
+    const cutePets = ['🐼', '🐱', '🐰', '🐻', '🐧'];
+    const petSpeeches = ['کنارتم!', 'فیلم چطوره؟', 'پاپ‌کورن داری؟', 'چه صحنه‌ای!', 'عالیه! ✨'];
+    let currentPetIdx = 0;
+
+    function playWithPet() {
+      currentPetIdx = (currentPetIdx + 1) % cutePets.length;
+      document.getElementById('petAvatar').textContent = cutePets[currentPetIdx];
+      const randSpeech = petSpeeches[Math.floor(Math.random() * petSpeeches.length)];
+      document.getElementById('petSpeech').textContent = randSpeech;
+    }
+
+    function openLinkStreamModal() { document.getElementById('linkStreamModal').style.display = 'flex'; }
+    function closeLinkStreamModal() { document.getElementById('linkStreamModal').style.display = 'none'; }
+    function closeLinkModalOutside(e) { if(e.target.id === 'linkStreamModal') closeLinkStreamModal(); }
+
+    async function submitExternalStream() {
+      const url = document.getElementById('streamUrlInput').value.trim();
+      if (!url) return alert('یک لینک معتبر وارد کنید.');
+      triggerHud('⏳', 'اتصال به پروکسی و بررسی زیرنویس...');
+      closeLinkStreamModal();
+
+      const res = await fetch(`api.php?action=set_external_stream&room=${currentRoom}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ url: url, user: myName })
+      });
+      const json = await res.json();
+      if (json.success) {
+        player.src = json.video_src;
+        player.load();
+        player.play().catch(() => {});
+        triggerHud('🎥', 'فیلم لود شد');
+      }
+    }
+
+    function renderFlyingEmoji(emoji) {
+      const layer = document.getElementById('reactionLayer');
+      const el = document.createElement('div');
+      el.className = 'floating-emoji';
+      el.textContent = emoji;
+      el.style.left = (Math.random() * 70 + 15) + '%';
+      layer.appendChild(el);
+      setTimeout(() => el.remove(), 2500);
+    }
+
+    function sendReaction(emoji) {
+      renderFlyingEmoji(emoji);
+      fetch(`api.php?action=send_message&room=${currentRoom}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: myName, text: emoji, type: 'reaction' })
+      });
+    }
+
+    let lastMsgId = 0;
+    let isFirstSSE = true;
+
+    function startSSE() {
+      const evt = new EventSource(`api.php?action=stream&room=${currentRoom}`);
+      evt.onmessage = (e) => {
+        const d = JSON.parse(e.data);
+        if (d.online_count !== undefined) {
+          document.getElementById('onlineCountTxt').textContent = `${d.online_count} نفر آنلاین`;
+        }
+        if (d.online_users) {
+          currentOnlineUsers = d.online_users;
+        }
+        if (d.state && d.state.video_src && !player.src.endsWith(d.state.video_src)) {
+          isInternalUpdate = true;
+          player.src = d.state.video_src;
+          player.load();
+          setTimeout(() => { isInternalUpdate = false; }, 500);
+        }
+        if (d.state && d.state.subtitle_src) applySubtitle(d.state.subtitle_src);
+        if (d.state && d.state.updated_by !== myName && player.src && player.readyState >= 2) {
+          const delta = Math.abs(player.currentTime - d.state.current_time);
+          if (d.state.status === 'playing' && player.paused) {
+            isInternalUpdate = true;
+            player.currentTime = d.state.current_time;
+            player.play();
+            setTimeout(() => { isInternalUpdate = false; }, 250);
+          } else if (d.state.status === 'paused' && !player.paused) {
+            isInternalUpdate = true;
+            player.pause();
+            player.currentTime = d.state.current_time;
+            setTimeout(() => { isInternalUpdate = false; }, 250);
+          } else if (delta > 1.4) {
+            isInternalUpdate = true;
+            player.currentTime = d.state.current_time;
+            setTimeout(() => { isInternalUpdate = false; }, 250);
+          }
+        }
+        if (d.new_messages && d.new_messages.length > 0) {
+          d.new_messages.forEach(msg => {
+            if (msg.id > lastMsgId) {
+              lastMsgId = msg.id;
+              if (msg.type === 'reaction') {
+                if (!isFirstSSE && msg.user !== myName) {
+                  renderFlyingEmoji(msg.text);
+                }
+              } else {
+                renderChatMessage(msg);
+              }
+            }
+          });
+        }
+        isFirstSSE = false;
+      };
+    }
+
+    function renderChatMessage(msg) {
+      const div = document.createElement('div');
+      div.className = 'chat-msg' + (msg.user === myName ? ' mine' : '');
+      if (msg.type === 'voice') {
+        div.innerHTML = `<div class="chat-sender">${msg.user}</div><audio controls src="${msg.text}" style="height:30px; width:190px;"></audio>`;
+      } else {
+        div.innerHTML = `<div class="chat-sender">${msg.user}</div><div>${msg.text}</div>`;
+      }
+      document.getElementById('chatList').appendChild(div);
+      document.getElementById('chatList').scrollTop = document.getElementById('chatList').scrollHeight;
+    }
+
+    document.getElementById('chatForm').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const txt = document.getElementById('chatInput').value.trim();
+      if (!txt) return;
+      fetch(`api.php?action=send_message&room=${currentRoom}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: myName, text: txt, type: 'text' })
+      });
+      document.getElementById('chatInput').value = '';
+    });
+
+    let mediaRecorder = null;
+    let voiceChunks = [];
+    async function toggleRecordVoice() {
+      const btn = document.getElementById('micBtn');
+      if (mediaRecorder && mediaRecorder.state === 'recording') {
+        mediaRecorder.stop();
+        btn.textContent = '🎙️';
+        btn.classList.remove('recording');
+      } else {
+        try {
+          const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+          mediaRecorder = new MediaRecorder(stream);
+          voiceChunks = [];
+          mediaRecorder.ondataavailable = e => { if (e.data.size > 0) voiceChunks.push(e.data); };
+          mediaRecorder.onstop = async () => {
+            const blob = new Blob(voiceChunks, { type: 'audio/webm' });
+            const fd = new FormData();
+            fd.append('voice', blob, 'voice.webm');
+            fd.append('room', currentRoom);
+
+            triggerHud('🎙️', 'ارسال ویس...');
+            const res = await fetch('upload.php', { method: 'POST', body: fd });
+            const json = await res.json();
+            if (json.status === 'done') {
+              fetch(`api.php?action=send_message&room=${currentRoom}`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ user: myName, text: json.url, type: 'voice' })
+              });
+            } else {
+              alert(json.message || 'خطا در ارسال ویس');
+            }
+            stream.getTracks().forEach(t => t.stop());
+          };
+          mediaRecorder.start();
+          btn.textContent = '⏹️';
+          btn.classList.add('recording');
+        } catch(e) {
+          alert('دسترسی میکروفون مسدود است.');
+        }
+      }
+    }
+
+    // آپلود فوق سریع توربو
+    document.getElementById('uploadBtn').addEventListener('click', async () => {
+      const fileInput = document.getElementById('filePicker');
+      const file = fileInput.files[0];
+      if (!file) return alert('یک فیلم انتخاب کنید.');
+
+      const chunkSize = 4 * 1024 * 1024;
+      const totalChunks = Math.ceil(file.size / chunkSize);
+      const status = document.getElementById('uploadStatus');
+      const uploadId = 'up_' + Date.now() + '_' + Math.floor(Math.random() * 1000);
+
+      let uploadedChunks = 0;
+      const concurrency = 4;
+      const chunkQueue = Array.from({ length: totalChunks }, (_, i) => i);
+
+      status.textContent = '🚀 آپلود توربو...';
+
+      async function uploadWorker() {
+        while (chunkQueue.length > 0) {
+          const i = chunkQueue.shift();
+          const start = i * chunkSize;
+          const end = Math.min(file.size, start + chunkSize);
+          const chunk = file.slice(start, end);
+
+          const formData = new FormData();
+          formData.append('file', chunk);
+          formData.append('room', currentRoom);
+          formData.append('uploadId', uploadId);
+          formData.append('chunkIndex', i);
+          formData.append('chunkSize', chunkSize);
+          formData.append('totalChunks', totalChunks);
+          formData.append('fileName', file.name);
+
+          let success = false;
+          let retries = 3;
+          while (!success && retries > 0) {
+            try {
+              const res = await fetch('upload.php', { method: 'POST', body: formData });
+              if (!res.ok) throw new Error();
+              success = true;
+              uploadedChunks++;
+              const pct = Math.round((uploadedChunks / totalChunks) * 100);
+              status.textContent = `🚀 توربو: ${pct}% (${uploadedChunks}/${totalChunks})`;
+            } catch(e) {
+              retries--;
+              if (retries === 0) throw new Error(`خطا در ارسال پارت ${i}`);
+              await new Promise(r => setTimeout(r, 600));
+            }
+          }
+        }
+      }
+
+      try {
+        const workers = Array.from({ length: Math.min(concurrency, totalChunks) }, () => uploadWorker());
+        await Promise.all(workers);
+
+        status.textContent = '⚡ پردازش نهایی با FFmpeg...';
+        const finalForm = new FormData();
+        finalForm.append('uploadId', uploadId);
+        finalForm.append('room', currentRoom);
+        finalForm.append('fileName', file.name);
+        finalForm.append('isFinal', '1');
+        finalForm.append('file', new Blob(['']));
+
+        const finalRes = await fetch('upload.php', { method: 'POST', body: finalForm });
+        const finalJson = await finalRes.json();
+
+        if (finalJson.status === 'done') {
+          status.textContent = 'تکمیل شد!';
+          await fetch(`api.php?action=update_state&room=${currentRoom}`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ user: myName, video_src: finalJson.url })
+          });
+
+          if (finalJson.subtitle_url) {
+            await fetch(`api.php?action=update_state&room=${currentRoom}`, {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ user: myName, subtitle_src: finalJson.subtitle_url })
+            });
+            triggerHud('📝', 'زیرنویس داخلی استخراج شد');
+          }
+
+          fileInput.value = '';
+          setTimeout(closeDrawer, 800);
+        }
+      } catch(err) {
+        status.textContent = 'خطا در آپلود توربو';
+        alert(err.message);
+      }
+    });
+
+    function broadcastState(status, time) {
+      if (isInternalUpdate || !currentRoom) return;
+      fetch(`api.php?action=update_state&room=${currentRoom}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: myName, status: status, time: time })
+      });
+    }
+
+    function triggerHud(icon, text) {
+      const hud = document.getElementById('hudNotice');
+      document.getElementById('hudIcon').textContent = icon;
+      document.getElementById('hudText').textContent = text;
+      hud.classList.add('show');
+      setTimeout(() => hud.classList.remove('show'), 2000);
+    }
+
+    function applySubtitle(url) {
+      const old = player.querySelectorAll('track');
+      old.forEach(t => t.remove());
+      const track = document.createElement('track');
+      track.kind = 'subtitles';
+      track.src = url;
+      track.default = true;
+      player.appendChild(track);
+
+      setTimeout(() => {
+        if (player.textTracks && player.textTracks[0]) {
+          const t = player.textTracks[0];
+          t.mode = 'hidden';
+          t.oncuechange = () => {
+            const overlay = document.getElementById('subOverlay');
+            if (t.activeCues && t.activeCues.length > 0) {
+              document.getElementById('subText').innerHTML = t.activeCues[0].text.replace(/\n/g, '<br>');
+              overlay.style.display = 'flex';
+            } else {
+              overlay.style.display = 'none';
+            }
+          };
+        }
+      }, 300);
+    }
+
+    function sendHeartbeat() {
+      if (!currentRoom) return;
+      fetch(`api.php?action=ping&room=${currentRoom}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: myName })
+      });
+    }
+
+    function openFileDrawer() { document.getElementById('fileDrawer').style.display = 'flex'; loadFiles(); }
+    function closeDrawer() { document.getElementById('fileDrawer').style.display = 'none'; }
+    function closeDrawerOutside(e) { if(e.target.id === 'fileDrawer') closeDrawer(); }
+    
+    async function loadFiles() {
+      const res = await fetch(`api.php?action=list_files&room=${currentRoom}`);
+      const json = await res.json();
+      const list = document.getElementById('fileArchiveList');
+      list.innerHTML = '';
+      if (!json.files || json.files.length === 0) {
+        list.innerHTML = '<div style="font-size:0.75rem; color:var(--text-muted); text-align:center;">فایلی در این اتاق وجود ندارد.</div>';
+        return;
+      }
+      json.files.forEach(f => {
+        const row = document.createElement('div');
+        row.style.cssText = 'display:flex; justify-content:space-between; align-items:center; background:rgba(255,255,255,0.04); padding:6px 10px; border-radius:6px; font-size:0.75rem; border:1px solid var(--border-color);';
+        row.innerHTML = `<span dir="ltr">${f.display_name}</span><button class="btn-header-chip" onclick="selectVideo('${f.url}')">انتخاب</button>`;
+        list.appendChild(row);
+      });
+    }
+
+    function selectVideo(url) {
+      fetch(`api.php?action=update_state&room=${currentRoom}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ user: myName, video_src: url })
+      });
+      player.src = url; player.load(); player.play().catch(()=>{});
+      closeDrawer();
+    }
+
+    async function clearChatHistory() {
+      if (!confirm('آیا مایل به حذف چت‌های این اتاق هستید؟')) return;
+      await fetch(`api.php?action=clear_chat&room=${currentRoom}`);
+      document.getElementById('chatList').innerHTML = '';
+    }
+
+    function changeNickname() {
+      const n = prompt('نام جدید:', myName);
+      if (n && n.trim()) {
+        myName = n.trim();
+        localStorage.setItem('party_user', myName);
+        document.getElementById('userNameLabel').textContent = myName;
+      }
+    }
+  </script>
+</body>
+</html>
